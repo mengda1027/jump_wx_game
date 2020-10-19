@@ -4,7 +4,7 @@ import gameView from "./view"
 class GameController {
   constructor() {
     this.gameView = gameView
-    this.gameModel = gameModel
+    // this.gameModel = gameModel
   }
 
   /**
@@ -37,3 +37,5 @@ class GameController {
     this.gameView.initGameOverPage(gameOverPageCallbacks)
   }
 }
+
+export default new GameController()
