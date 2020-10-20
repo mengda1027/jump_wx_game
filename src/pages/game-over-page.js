@@ -36,7 +36,7 @@ export default class GameOverPage {
     // 绘制文字
     this.context.fillText("Game Over", (window.innerWidth - 200) / 2 + 50, (window.innerHeight - 100) / 2 + 55)
     this.texture.needsUpdate = true
-    this.scene.add(this.obj)
+    this.scene.instance.add(this.obj)
   }
 
   show() {
