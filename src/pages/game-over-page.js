@@ -22,6 +22,7 @@ export default class GameOverPage {
     this.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight)
     // 生成mesh
     this.obj = new THREE.Mesh(this.geometry, this.material)
+    this.obj.visible = false
     this.obj.position.z = 1
     // 围绕y轴旋转
     this.obj.rotation.y = Math.PI
@@ -32,12 +33,17 @@ export default class GameOverPage {
     this.context.fillRect((window.innerWidth - 200) / 2, (window.innerHeight - 100) / 2, 200, 100)
     this.context.fillStyle = "#eee"
     this.context.font = "20px Georgia"
+    // 绘制文字
     this.context.fillText("Game Over", (window.innerWidth - 200) / 2 + 50, (window.innerHeight - 100) / 2 + 55)
     this.texture.needsUpdate = true
     this.scene.add(this.obj)
   }
 
   show() {
-    console.log("game over page show")
+    this.obj.visible = true
+  }
+
+  hide() {
+    this.obj.visible = false
   }
 }

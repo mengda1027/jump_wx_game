@@ -1,24 +1,23 @@
 import gameView from "./view"
-// import gameModel from "./model"
+import gameModel from "./model"
 
 class GameController {
   constructor() {
     this.gameView = gameView
-    // this.gameModel = gameModel
-  }
-
-  /**
-   * 显示游戏结束方法
-   */
-  showGameOverPage = () => {
-    this.gameView.showGameOverPage()
-  }
-
-  /**
-   * 重启游戏
-   */
-  restartGame = () => {
-    this.gameView.restartGame()
+    this.gameModel = gameModel
+    // 绑定 stage 切换事件
+    this.gameModel.stageChanged.attach((render, args) => {
+      const stageName = args.stage
+      switch (stageName) {
+        case "game-over":
+          this.gameView.showGameOverPage()
+          break
+        case "game":
+          this.gameView.showGamePage()
+          break
+        default:
+      }
+    })
   }
 
   /**
@@ -26,11 +25,13 @@ class GameController {
    */
   initPages() {
     const gamePageCallbacks = {
-      showGameOverPage: this.showGameOverPage, // 游戏结束，显示结束
+      showGameOverPage: () => {
+        this.gameModel.setStage("game-over")
+      },
     }
 
-    const gameOverPageCallbacks = {
-      gameRestart: this.restartGame,
+    const gameOverPageCallbacks = () => {
+      this.gameModel.setStage("game")
     }
 
     this.gameView.initGamePage(gamePageCallbacks)

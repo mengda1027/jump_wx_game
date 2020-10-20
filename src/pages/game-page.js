@@ -1,10 +1,10 @@
 export default class GamePage {
   constructor(callbacks) {
     this.callbacks = callbacks
+    this.mesh = null
   }
 
   init() {
-    console.log("game page init")
     var width = window.innerWidth
     var height = window.innerHeight
 
@@ -30,13 +30,14 @@ export default class GamePage {
       side: THREE.DoubleSide,
     })
     var mesh = new THREE.Mesh(geometry, material)
+    this.mesh = mesh
     mesh.position.x = 0
     mesh.position.y = 0
     mesh.position.z = 1
-    // scene.add(mesh)
+    scene.add(mesh)
     // 轴线观察helper
-    const axesHelper = new THREE.AxesHelper(100)
-    scene.add(axesHelper)
+    // const axesHelper = new THREE.AxesHelper(100)
+    // scene.add(axesHelper)
 
     camera.position.x = 0
     camera.position.y = 0
@@ -52,6 +53,10 @@ export default class GamePage {
       lastTimestamp = now
       currentAngle = currentAngle + (duration / 1000) * Math.PI
     }
+
+    setTimeout(() => {
+      this.callbacks.showGameOverPage()
+    }, 1000)
 
     var render = function () {
       animate()
@@ -69,5 +74,13 @@ export default class GamePage {
    */
   restart() {
     console.log("game page restart")
+  }
+
+  show() {
+    this.mesh.visible = true
+  }
+
+  hide() {
+    this.mesh.visible = false
   }
 }

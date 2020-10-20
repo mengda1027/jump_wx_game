@@ -20,7 +20,13 @@ class GameView {
    * Controller 调用
    */
   showGameOverPage() {
+    this.gamePage.hide()
     this.gameOverPage.show()
+  }
+  showGamePage() {
+    this.gameOverPage.hide()
+    this.gamePage.restart()
+    this.gamePage.show()
   }
   restartGame() {
     this.gamePage.restart()
