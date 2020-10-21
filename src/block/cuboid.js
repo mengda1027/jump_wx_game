@@ -5,7 +5,7 @@ export default class Cuboid extends BaseBlock {
     super("cuboid")
     const size = width || this.width
     var geometry = new THREE.BoxGeometry(size, this.height, size)
-    var material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshPhongMaterial({
       color: 0xffffff,
     })
     this.instance = new THREE.Mesh(geometry, material)
