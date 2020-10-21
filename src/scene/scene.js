@@ -1,5 +1,6 @@
 import camera from "./camera"
 import light from "./light"
+import background from "../objects/background"
 
 class Scene {
   constructor() {
@@ -28,6 +29,12 @@ class Scene {
     for (let lightType in this.light.instances) {
       this.instance.add(this.light.instances[lightType])
     }
+
+    // 将background添加到camera中
+    this.background = background
+    this.background.init()
+    this.background.instance.position.z = -84
+    this.camera.instance.add(this.background.instance)
   }
 
   render() {
