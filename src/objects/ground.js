@@ -12,6 +12,7 @@ class Ground {
     this.instance = new THREE.Mesh(groundGeometry, material)
     this.instance.rotation.x = -Math.PI / 2
     this.instance.position.y = -16 / 3.2
+    this.instance.receiveShadow = true
   }
 }
 

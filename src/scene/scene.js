@@ -15,6 +15,11 @@ class Scene {
       canvas,
       preserveDrawingBuffer: true, // 绘制缓存
     })
+
+    // shadow
+    this.renderer.shadowMap.enabled = true
+    this.renderer.shadowMap.type = THREE.PCFShadowMap
+
     // camera 添加到 scene 中
     this.camera = camera
     this.camera.init()
